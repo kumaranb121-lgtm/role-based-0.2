@@ -12,8 +12,8 @@ export const useSocketStore = create<SocketState>()((set, get) => ({
   connect: (token: string) => {
     if (get().socket) return;
     
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
-    const newSocket = io(API_URL, {
+    const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || `http://${window.location.hostname}:3000`;
+    const newSocket = io(SOCKET_URL, {
       auth: { token },
     });
 
